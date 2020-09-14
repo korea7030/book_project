@@ -1,0 +1,100 @@
+*.env
+.idea/*
+.editorconfig
+backend/migrations/*
+backend/*/__pycache__/*
+backend/bookmanager/management/__pycache__/
+backend/bookmanager/management/commands/__pycache__/
+backend/django.env
+backend/*/migrations/
+bakcend/statistics/__pycache__/*
+frontend/node_modules/
+
+frontend/.expo/*
+frontend/npm-debug.*
+frontend/*.jks
+frontend/*.p8
+frontend/*.p12
+frontend/*.key
+frontend/*.mobileprovision
+frontend/*.orig.*
+frontend/web-build/
+frontend/web-report/
+
+frontend/package-lock.json
+frontend/.env
+
+# OSX
+#
+frontend/.DS_Store
+
+# Xcode
+#
+frontend/build/
+frontend/*.pbxuser
+frontend/!default.pbxuser
+frontend/*.mode1v3
+frontend/!default.mode1v3
+frontend/*.mode2v3
+frontend/!default.mode2v3
+frontend/*.perspectivev3
+frontend/!default.perspectivev3
+frontend/xcuserdata
+frontend/*.xccheckout
+frontend/*.moved-aside
+frontend/DerivedData
+frontend/*.hmap
+frontend/*.ipa
+*.xcuserstate
+
+# Android/IntelliJ
+#
+build/
+.idea
+.gradle
+local.properties
+*.iml
+
+# node.js
+#
+frontend/node_modules/
+frontend/npm-debug.log
+frontend/yarn-error.log
+
+# BUCK
+frontend/buck-out/
+\.buckd/
+*.keystore
+!debug.keystore
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
+
+# Bundle artifact
+*.jsbundle
+
+# CocoaPods
+# frontend//ios/Pods/
+# node_modules/
+frontend/src/tailwind.generated.css
+
+# vscode
+.vscode/*
+
+# pycharm
+.DS_Store
+
+# venv
+backend/.venv/*
+
+backend/zappa_settings.json
+backend/bookmanager/migrations/*
+backend/accounts/migrations/*

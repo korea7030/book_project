@@ -1,0 +1,30 @@
+.align-pagination {
+    display: flex;
+    justify-content: center;
+}
+.pagination {
+    text-align: center;
+    margin-top: 40px;
+}
+.pagination ul {
+    display: inline-block;
+}
+.pagination li {
+    float: left;
+    margin: 4px;
+}
+.pagination li a {
+    display: block;
+    width: 30px;
+    height: 30px;
+    padding: 7px 0;
+    border: 1px solid #61b68e;
+    color: #3f6654;
+    line-height: 1;
+}
+
+.pagination li.active a {
+    border-color: #000a65;
+    background-color: #000a65;
+    color: #fff;
+}

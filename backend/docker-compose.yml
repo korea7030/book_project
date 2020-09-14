@@ -1,0 +1,115 @@
+version: '2' # docker compose 버전 정의
+volumes:
+  agent_python_gunicorn: {}
+  ws_python_daphne: {}
+
+services: # 서비스 정의
+  web:  # 서비스명
+    restart: always
+    build:  # 빌드 지정
+      context: .  # Dockerfile이 있는 디렉토리의 경로
+      dockerfile: Dockerfile  # Dockerfile명
+    volumes:  # 컨테이너에 볼륨을 마운트
+      - .:/myproject
+      - agent_python_gunicorn:/run/gunicorn
+    env_file:
+      - ./django.env
+    environment:
+      - LOGSTASH_HOST=logstash
+    expose:
+      - "5959"
+      - "8000"
+      - "5432"
+    networks:
+      - elastic
+      - nginx_network
+      - db_network
+#    links:
+#      - logstash
+    tty: true
+    depends_on:
+      - db
+
+  db:
+    restart: always
+    build:
+      context: ./config/postgresql
+      dockerfile: Dockerfile
+    container_name: postgresql01
+    ports:
+      - 5432:5432
+    env_file:
+      - ./config/postgresql/db.env
+    networks:
+      - db_network
+
+#  elasticsearch:
+#    restart: always
+#    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.4@sha256:5ca85697b6273f63196b44c32311c5a2d1135af9cfd919e5922e49c5045d04b8
+#    volumes:
+#      - ./config/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+#    ports:
+#      - '9200:9200'
+#      - '9300:9300'
+#    environment:
+#      - ES_JAVA_OPTS=-Xmx256m -Xms256m
+#    networks:
+#      - elastic
+#
+#  kibana:
+#    restart: always
+#    image: docker.elastic.co/kibana/kibana:6.5.4@sha256:632ecebdf89a36052e3eba281fdfa621a2afe5cd6b8061ad380ba3b3f0b25c01
+#    ports:
+#      - '5601:5601'
+#    volumes:
+#      - ./config/kibana/config/:/usr/share/kibana/config:ro
+#    depends_on:
+#      - elasticsearch
+#    networks:
+#      - elastic
+#
+#  logstash:
+#    restart: always
+#    image: docker.elastic.co/logstash/logstash:6.5.4@sha256:aeb0cc317b51b01ac90216726ba6e636da9fbb5285056b2ffc81e7ee0539faf2
+#    ports:
+#      - '5959:5959'
+#      - '5140:5140'
+#    environment:
+#      - ELASTICSEARCH_HOST=elasticsearch
+#      - ELASTICSEARCH_PORT=9200
+#      - LS_JAVA_OPTS=-Xmx256m -Xms256m
+#    volumes:
+##      - ./config/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+#      - ./config/logstash/pipeline/logstash.conf:/usr/share/logstash/config/logstash.conf:ro
+#    commands: logstash -f /usr/share/logstash/config/logstash.conf
+#    depends_on:
+#      - elasticsearch
+#    tty: true
+#    networks:
+#      - elastic
+
+  nginx:
+    restart: always
+#    image: nginx:latest # 도커 이미지(d2hub 최신버전)
+    build: ./config/nginx/  # Dockerfile이 있는 디렉토리의 경로
+    ports:
+      - '80:80'
+    volumes:
+      - agent_python_gunicorn:/run/gunicorn
+#      - ./config/nginx:/etc/nginx/conf.d
+    depends_on: # 서비스 의존관계 정의. 컨테이너의 시작 순서만 제어
+      - web # nginx 컨테이너를 시작하기 전에 web 컨테이너를 시작
+    networks:
+#      - elastic
+      - nginx_network
+    links:
+      - web
+#      - logstash
+
+networks:
+  nginx_network:
+    driver: bridge
+  elastic:
+    driver: bridge
+  db_network:
+    driver: bridge

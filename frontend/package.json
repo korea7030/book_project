@@ -1,0 +1,89 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "@fullhuman/postcss-purgecss": "^2.2.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "autoprefixer": "^9.8.0",
+    "axios": "^0.19.2",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "chokidar-cli": "^2.1.0",
+    "dotenv": "^8.2.0",
+    "electron-is-dev": "^1.2.0",
+    "http-proxy-middleware": "^1.0.4",
+    "install": "^0.13.0",
+    "moment": "^2.27.0",
+    "net": "^1.0.2",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^7.1.1",
+    "postcss-loader": "^3.0.0",
+    "react": "^16.13.1",
+    "react-datepicker": "^3.0.0",
+    "react-dom": "^16.13.1",
+    "react-js-pagination": "^3.0.3",
+    "react-modal": "^3.11.2",
+    "react-redux": "^7.2.0",
+    "react-star-rating-component": "^1.4.1",
+    "react-toastify": "^6.0.8",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-form": "^8.3.5",
+    "redux-thunk": "^2.3.0",
+    "tailwindcss": "^1.6.2",
+    "tailwindcss-tables": "^0.4.0",
+    "typescript": "^3.8.3",
+    "watch": "^1.0.2"
+  },
+  "proxy": "http://localhost:7000",
+  "scripts": {
+    "build:tailwind": "tailwindcss build src/tailwind.css -o src/tailwind.generated.css",
+    "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/tailwind.output.css -c 'npm run build:tailwind'",
+    "start": "npm-run-all build:tailwind --parallel watch:tailwind start:react",
+    "start:react": "react-scripts start",
+    "prebuild": "run-s build:tailwind",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "css-loader": "^3.6.0",
+    "electron": "^8.2.5",
+    "electron-builder": "^22.6.0",
+    "file-loader": "^6.0.0",
+    "foreman": "^3.0.1",
+    "mini-css-extract-plugin": "^0.10.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.4.3",
+    "style-loader": "^1.2.1",
+    "wait-on": "^5.0.0"
+  },
+  "main": "public/electron.js",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "author": "",
+  "license": "ISC"
+}
