@@ -197,7 +197,7 @@ BookEdit = reduxForm({
 
 // initialvalues from component props
 const mapStateToProps = (state, ownProps) => ({
-    auth: state.auth,
+    auth: state.user,
     options: state.book.formatOption,
     initialValues:{
         started_reading: ownProps.started_reading,

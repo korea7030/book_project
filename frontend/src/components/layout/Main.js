@@ -157,7 +157,7 @@ class Main extends Component {
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth,
+    auth: state.user,
     statusCount: state.dash.bstatus,
     formatCount: state.dash.bformat,
     recentBook: state.dash.brecent

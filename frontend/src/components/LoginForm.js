@@ -42,11 +42,6 @@ class LoginForm extends Component {
     }
 
     render() {
-        if (this.props.isAuthenticated) {
-            let user = this.props.user;
-            return <Redirect to={`/main/${user.pk}`} />;
-        }
-        
         return (
             <>
             <div className="container mx-auto h-full flex flex-1 justify-center items-center">
@@ -94,8 +89,8 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.user
+    isAuthenticated: state.user.isAuthenticated,
+    user: state.user.user
 });
 
 LoginForm = connect(mapStateToProps, {login})(LoginForm);

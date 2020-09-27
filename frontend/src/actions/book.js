@@ -112,7 +112,7 @@ export const updateBook = (book_id, formValues) => async (dispatch, getState) =>
         dispatch({
             type: BOOK_UPDATE_FAIL
         });
-        dispatch(stopSubmit('BookDetail', err.response.data));
+        history.push('/login');
     }
 }
 // user book delete
@@ -138,7 +138,7 @@ export const deleteBook = (book_id) => async (dispatch, getState) => {
         dispatch({
             type: DELETE_FAIL_BOOK
         });
-        dispatch(stopSubmit("BookList", err.response.data));
+        history.push('/login');
     }
 }
 
@@ -206,6 +206,7 @@ export const deleteTimeLine = (book_id, timeline_id) => async (dispatch, getStat
                 dispatch({
                     type: DELETE_TIMELINE_FAIL
                 });
+                history.push('/login');
             }
         });
     } catch (err) {
@@ -229,6 +230,7 @@ export const addTimeLine = (book_id, values) => async(dispatch, getState) => {
                 dispatch({
                     type: ADD_TIMELINE_FAIL
                 });
+                history.push('/login');
             }
         });
         

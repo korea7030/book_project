@@ -34,6 +34,15 @@ class BookStoreSerializer(serializers.ModelSerializer):
             'reg_date',
             'mod_date',
             'user')
+
+
+class BookCreateUpdateSerializer(serializers.ModelSerializer):
+    """
+    BookStore Create, Update Serializer
+    """
+    class Meta:
+        model = BookStore
+        fields = '__all__'
     
     def create(self, validated_data):
         """

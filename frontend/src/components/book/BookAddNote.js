@@ -99,7 +99,7 @@ BookAddNote = reduxForm({
 const noteRequiredCheck = (value) => value === undefined ? <span className='block sm:inline text-red-700'>this field required </span>: undefined;
 
 const mapStateToProps = (state, ownProps) => ({
-    auth: state.auth,  
+    auth: state.user,  
 });
 
 BookAddNote = connect(mapStateToProps, {addNote})(BookAddNote);

@@ -10,7 +10,7 @@ class Header extends Component {
         this.state = {
             open: false,
             sideOpen: true,
-            user: localStorage.getItem("user")? localStorage.getItem("user").user: null,
+            user: localStorage.getItem("user")? localStorage.getItem("user"): null,
             isAuthenticated: localStorage.getItem("token")? true: false
         };
 
@@ -19,7 +19,7 @@ class Header extends Component {
         // we will update local component state and force component to rerender 
         // with new data.
             this.setState({
-                user: store.getState().user.user,
+                user: store.getState().user,
                 isAuthenticated: store.getState().user.isAuthenticated
             })
         });
@@ -37,7 +37,6 @@ class Header extends Component {
 
     render() {
         // const { user, isAuthenticated } = this.props.auth;
-        
         const guestLinks = (
             <li>
                 <Link

@@ -23,6 +23,7 @@ export const getBookStatus = (user_id) => async (dispatch, getState) => {
                 dispatch({
                     type: GET_STATUS_FAIL
                 })
+                history.push('/login');
             }
         })
     } catch (err) {
@@ -45,6 +46,7 @@ export const getBookFormat = (user_id) => async (dispatch, getState) => {
                 dispatch({
                     type: GET_FORMAT_FAIL
                 })
+                history.push('/login');
             }
         })
     } catch (err) {
@@ -66,6 +68,7 @@ export const getRecentBookView = (user_id) => async (dispatch, getState) => {
                 dispatch({
                     type: GET_RECENT_FAIL
                 })
+                history.push('/login');
             }
         })
     } catch (err) {

@@ -245,7 +245,7 @@ class BookTimeLine extends Component {
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth,
+    auth: state.user,
     timeline: state.book.timelines
 })
 

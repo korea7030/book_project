@@ -1,5 +1,6 @@
 from django.views import View
 from django.http import JsonResponse
+from rest_framework import serializers
 
 from rest_framework.response import Response
 from rest_framework import generics
@@ -11,6 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from .models import BookStore, BookTimeline, BookNote
 from .serializers import (
     BookStoreSerializer,
+    BookCreateUpdateSerializer,
     BookNoteSerializer,
     BookTimelineSerializer
 )
@@ -60,8 +62,12 @@ class BookStoreList(generics.ListCreateAPIView):
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
+    def create(self, request, *args, **kwargs):
+        serializer = BookCreateUpdateSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class BookStoreDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -84,7 +90,7 @@ class BookStoreDetail(generics.RetrieveUpdateDestroyAPIView):
     def put(self, request, pk, *args, **kwargs):
         book = self.get_object(pk)
 
-        serializer = self.get_serializer(book, data=request.data, partial=True)
+        serializer = BookCreateUpdateSerializer(book, data=request.data, partial=True)
 
         if serializer.is_valid():
             serializer.save()
@@ -126,7 +132,6 @@ class BookTimeLineList(generics.ListCreateAPIView):
             return Response(None, status=status.HTTP_404_NOT_FOUND)
 
     def post(self, request, *args, **kwargs):
-        print(request.data)
         return self.create(request, *args, **kwargs)
 
 

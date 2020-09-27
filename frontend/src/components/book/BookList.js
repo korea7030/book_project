@@ -14,6 +14,7 @@ class BookList extends Component {
         super(props);
         this.state = {
             page: 1,
+            isAuthenticated: localStorage.getItem("isAuthenticated")? true: false
         };
     }
     componentDidMount() {
@@ -84,7 +85,8 @@ class BookList extends Component {
     };
 
     render() {
-        const { isAuthenticated } = this.props.auth;
+        const storageAuth = localStorage.getItem("isAuthenticdated");
+        const { isAuthenticated } = storageAuth? storageAuth: this.props.auth;
 
         return (
             <main className="bg-white-300 flex-1 p-3 overflow-hidden">
@@ -265,7 +267,7 @@ class BookList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    auth: state.auth,
+    auth: state.user,
     data: state.book.books,
 });
 

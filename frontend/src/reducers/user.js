@@ -13,7 +13,7 @@ import {
 
 const initialState = {
     token: localStorage.getItem("token"),
-    isAuthenticated: null,
+    isAuthenticated: localStorage.getItem("isAuthenticated"),
     isLoading: false,
     user: localStorage.getItem("user")
 };
@@ -21,9 +21,9 @@ const initialState = {
 export default function(state = initialState, action) {
     switch (action.type) {
         case LOGIN_SUCCESS:
-            console.log('!!!!!', action.payload);
             localStorage.setItem("token", action.payload.token);
             localStorage.setItem("user", action.payload.user);
+            localStorage.setItem("isAuthenticated", true);
             return {
                 ...state,
                 token: action.payload.token,
@@ -34,6 +34,7 @@ export default function(state = initialState, action) {
         case LOGOUT_SUCCESS:
             localStorage.removeItem("token");
             localStorage.removeItem("user");
+            localStorage.removeItem("isAuthenticated");
             return {
                 ...state,
                 token: null,

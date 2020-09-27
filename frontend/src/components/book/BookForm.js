@@ -115,12 +115,15 @@ class BookForm extends Component {
 
     handleSubmit = (values) => {
         // event.preventDefault();
-        console.log(values);
-        // console.log(this.props.auth.user.pk);
+        console.log(this.props.auth);
+        values.author = values.author[0];
+        if (values.translator.length == 0) {
+            values.translator = '';
+        }
+
         values.user = this.props.auth.user.pk;
-        // values.user = auth
+        // // values.user = auth
         this.props.createBook(values);
-        history.push(`/books`);
     }
 
     render() {
@@ -243,7 +246,7 @@ class BookForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    auth: state.auth,
+    auth: state.user,
     options: state.book.formatOption
 });
 
