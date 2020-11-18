@@ -27,7 +27,9 @@ SECRET_KEY = env_variable['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'https://9584qko1ia.execute-api.ap-northeast-2.amazonaws.com/dev']
+ALLOWED_HOSTS = ['*',
+     'https://9584qko1ia.execute-api.ap-northeast-2.amazonaws.com/dev', 
+     'django-env.eba-ph2wcqgn.us-west-2.elasticbeanstalk.com']
 
 
 # Application definition
