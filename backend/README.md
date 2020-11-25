@@ -25,3 +25,6 @@
 | PUT | bookmanager | /books/(?P<b_pk>[0-9]+)/timelines/(?P<pk>[0-9]+) | 책 Note 정보 update(Token 필요) |
 | DELETE | bookmanager | /books/(?P<b_pk>[0-9]+)/timelines/(?P<pk>[0-9]+) | 책 Note 정보 Delete(Token 필요) |
 | GET | bookmanager | /books/choices | 책 format 정보 Get(Token 필요) |
+| GET | summarization | /dashboard/status | 유저의 책 읽은 현황(Read/Reading/UnRead) (Token 필요) |
+| GET | summarization | /dashboard/format | 유저가 읽은 책의 format(eBook/Book)(Token 필요) |
+| GET | summarization | /dashboard/recent | 유저가 최근에 읽은 책 목록(최근 3개 항목)(Token 필요) |
