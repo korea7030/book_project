@@ -26,7 +26,7 @@ class CreateUserAPIView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
 
-        if serializer.is_valid(raise_exception=True):
+        if serializer.is_valid(raise_exception=False):
             user = serializer.save()
             token_data = Token.objects.create(user=user)
 
@@ -50,7 +50,7 @@ class LoginAPIView(generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
 
-        if serializer.is_valid(raise_exception=True):
+        if serializer.is_valid(raise_exception=False):
             user = serializer.validated_data
 
             token_data = Token.objects.create(user=user)
