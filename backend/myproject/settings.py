@@ -28,6 +28,7 @@ SECRET_KEY = env_variable['SECRET_KEY']
 DEBUG = True
 
 ALLOWED_HOSTS = ['*',
+     'https://cryptic-island-60331.herokuapp.com',
      'https://9584qko1ia.execute-api.ap-northeast-2.amazonaws.com/dev', 
      'django-env.eba-ph2wcqgn.us-west-2.elasticbeanstalk.com']
 
