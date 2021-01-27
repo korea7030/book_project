@@ -52,3 +52,7 @@ Frontend: React
 검색 api 변경 설정이 가능한 화면
 
 ![이미지](./images/img6.png)
+
+### 이후 예정
+- React Native를 활용하여 개발
+- Backend는 heroku를 사용하여 구축 후, AWS로 옮길 예정
