@@ -28,7 +28,7 @@ export const login = ({ email, password }) => async (dispatch) => {
     const body = JSON.stringify({ email, password });
 
     try {
-        const res = await axios.post("/accounts/login/", body, config);
+        const res = await axios.post("/accounts/login", body, config);
 
         const authConfig = {
             headers: {
@@ -36,7 +36,7 @@ export const login = ({ email, password }) => async (dispatch) => {
             },
         };
 
-        const resAuth = await axios.get("/accounts/user/", authConfig).then(resAuth => {
+        const resAuth = await axios.get("/accounts/user", authConfig).then(resAuth => {
             if (resAuth.status === 200) {
                 toast.success('Login Success');
                 resAuth.data.token = res.data.token;
@@ -67,7 +67,7 @@ export const login = ({ email, password }) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch, getState) => {
-    await axios.post("/accounts/logout/", null, tokenConfig(getState)).then(res => {
+    await axios.post("/accounts/logout", null, tokenConfig(getState)).then(res => {
         if (res.status === 200) {
             toast.success('Logout');
             dispatch({
@@ -88,7 +88,7 @@ export const register = ({ email, username, password }) => async (dispatch) => {
     const body = JSON.stringify({ email, username, password });
 
     try {
-        const res = await axios.post("/accounts/register/", body, config).then(res => {
+        const res = await axios.post("/accounts/register", body, config).then(res => {
             if (res.status === 200) {
                 toast.success('Register Success');
 

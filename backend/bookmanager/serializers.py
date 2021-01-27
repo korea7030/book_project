@@ -112,7 +112,6 @@ class BookNoteSerializer(serializers.ModelSerializer):
         return BookNote.objects.create(**validaed_data)
 
     def update(self, instance, validated_data):
-        print('validate_data : ', validated_data)
         instance.note = validated_data.get('note', instance.note)
         instance.save()
         return instance

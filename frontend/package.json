@@ -43,7 +43,7 @@
     "typescript": "^3.8.3",
     "watch": "^1.0.2"
   },
-  "proxy": "http://localhost:7000",
+  "proxy": "http://localhost:8000",
   "scripts": {
     "build:tailwind": "tailwindcss build src/tailwind.css -o src/tailwind.generated.css",
     "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/tailwind.output.css -c 'npm run build:tailwind'",

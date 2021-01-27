@@ -21,7 +21,6 @@ class UserManager(BaseUserManager):
         if not email or not username:
             raise ValueError("required field")
 
-        print(email, username)
         return self._create_user(email, username, password, **extra_fields)
 
     def create_superuser(self, username, email, password, **extra_fields):

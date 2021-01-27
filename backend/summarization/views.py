@@ -52,6 +52,8 @@ class DashBoardBookFormatView(View):
             sum_format=Count('book_format')
             ).annotate(avg_format=Cast(F('sum_format'), FloatField()) / Cast(total_count, FloatField())
             ).values('book_format', 'sum_format', 'avg_format')
+
+        print(list(query))
         
         return JsonResponse(list(query), safe=False)
 
